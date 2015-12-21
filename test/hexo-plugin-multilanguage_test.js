@@ -5,7 +5,11 @@ var Hexo = require('hexo');
 global.hexo = new Hexo(__dirname, {silent: true});
 
 
-require('../index.js');
+function requireCovered(path) {
+    return require((process.env.LIB_DIR_FOR_CODE_COVERAGE || '../lib/') + path);
+}
+
+requireCovered('helper');
 
 var expect = require('chai').expect,
   should = require('chai').should();
